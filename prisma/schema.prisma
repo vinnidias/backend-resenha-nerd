@@ -19,6 +19,7 @@ model News {
   title      String
   subtitle   String
   content    String
+  image      String? 
   created_at DateTime  @default(now())
   updated_at DateTime? @default(now())
 
