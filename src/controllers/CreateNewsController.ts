@@ -3,12 +3,15 @@ import { CreateNewsService } from "../services/CreateNewsService";
 
 class CreateNewsController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
-    const { author, title, subtitle, content } = request.body as {
-      author: string;
-      title: string;
-      subtitle: string;
-      content: string;
-    };
+    const { author, title, subtitle, category, content, image } =
+      request.body as {
+        author: string;
+        title: string;
+        subtitle: string;
+        category: string;
+        content: string;
+        image: string;
+      };
 
     const newsService = new CreateNewsService();
 
@@ -16,7 +19,9 @@ class CreateNewsController {
       author,
       title,
       subtitle,
+      category,
       content,
+      image,
     });
 
     reply.send(news);

@@ -4,12 +4,14 @@ interface CreateNewsProps {
   author: string;
   title: string;
   subtitle: string;
+  category: string;
   content: string;
+  image?: string;
 }
 
 class CreateNewsService {
-  async execute({ author, title, subtitle, content }: CreateNewsProps) {
-    if (!author || !title || !subtitle || !content) {
+  async execute({ author, title, subtitle, category, content, image }: CreateNewsProps) {
+    if (!author || !title || !subtitle || !content || !category) {
       throw new Error("Preencha todos os campos para enviar a notícia!");
     }
 
@@ -18,7 +20,9 @@ class CreateNewsService {
         author,
         title,
         subtitle,
+        category,
         content,
+        image
       },
     });
 
