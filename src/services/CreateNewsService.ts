@@ -6,25 +6,39 @@ interface CreateNewsProps {
   subtitle: string;
   category: string;
   content: string;
+  end_text?: string;
   image?: string;
+  image_credits?: string;
+  link?: string;
 }
 
 class CreateNewsService {
-  async execute({ author, title, subtitle, category, content, image }: CreateNewsProps) {
+  async execute({
+    author,
+    title,
+    subtitle,
+    category,
+    content,
+    end_text,
+    image,
+    image_credits,
+    link,
+  }: CreateNewsProps) {
     if (!author || !title || !subtitle || !content || !category) {
       throw new Error("Preencha todos os campos para enviar a notícia!");
     }
 
-    const news = prismaClient.news.create({
-      data: {
-        author,
-        title,
-        subtitle,
-        category,
-        content,
-        image
-      },
-    });
+    const news = prismaClient.news.create({data:{
+      author,
+      category,
+      title,
+      subtitle,
+      content,
+      end_text,
+      image,
+      image_credits,
+      link
+    }});
 
     return news;
   }
