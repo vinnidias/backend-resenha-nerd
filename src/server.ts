@@ -4,7 +4,7 @@ import { routes } from "./routes";
 
 const app = Fastify({logger: true});
 
-const port = 3333
+const port = process.env.PORT ? Number(process.env.PORT) : 3333
 
 const start = async () => {
   await app.register(cors)
