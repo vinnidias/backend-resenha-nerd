@@ -4,7 +4,8 @@
   "description": "servidor do portal resenha nerd",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "start": "fastify start -l info -a 0.0.0.0 app.js"
   },
   "author": "vinnidias",
   "license": "ISC",
