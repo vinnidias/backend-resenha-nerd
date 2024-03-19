@@ -3,15 +3,20 @@
   "version": "1.0.0",
   "description": "servidor do portal resenha nerd",
   "main": "index.js",
+  "engines": {
+    "node": "18"
+  },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "fastify start -l info -a 0.0.0.0 app.js"
+    "start": "fastify start -l info -a 0.0.0.0 app.js",
+    "build": "tsup src"
   },
   "author": "vinnidias",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.11.28",
     "prisma": "^5.11.0",
+    "tsup": "^8.0.2",
     "typescript": "^5.4.2"
   },
   "dependencies": {
