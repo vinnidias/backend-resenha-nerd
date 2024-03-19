@@ -14,18 +14,18 @@ datasource db {
 }
 
 model News {
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  author       String
-  title        String
-  subtitle     String
-  category     String
-  content      String
-  endText      String?
-  image        String?
-  imageCredits String?
-  link         String?
-  created_at   DateTime  @default(now())
-  updated_at   DateTime? @default(now())
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  author        String
+  title         String
+  subtitle      String
+  category      String
+  content       String
+  end_text      String?
+  image         String?
+  image_credits String?
+  link          String?
+  created_at    DateTime  @default(now())
+  updated_at    DateTime? @default(now())
 
   @@map("news")
 }
