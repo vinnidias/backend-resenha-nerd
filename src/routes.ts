@@ -13,7 +13,7 @@ export async function routes(
   options: FastifyInstance
 ) {
   fastify.get(
-    "/teste",
+    "/",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return {
         ok: true,
