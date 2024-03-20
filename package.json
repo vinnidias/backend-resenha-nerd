@@ -8,7 +8,8 @@
   },
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "node server.js"
+    "build": "tsup src",
+    "start": "node dist/server.js"
   },
   "author": "vinnidias",
   "license": "ISC",
