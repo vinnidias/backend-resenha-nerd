@@ -8,7 +8,11 @@ const PORT = process.env.PORT ? Number(process.env.PORT) : 3333;
 const HOST = "0.0.0.0";
 
 const start = async () => {
-  await app.register(cors);
+  await app.register(cors, {
+    origin: "*",
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type"],
+  });
   await app.register(routes);
 
   try {
