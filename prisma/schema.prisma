@@ -31,13 +31,26 @@ model News {
   @@map("news")
 }
 
+model Reviews {
+  id         String    @id @default(auto()) @map("_id") @db.ObjectId
+  author     Author    @relation(fields: [authorId], references: [nickname])
+  category   String
+  title      String
+  subtitle   String
+  content    String
+  created_at DateTime  @default(now())
+  updated_at DateTime? @default(now())
+  authorId   String
+}
+
 model Author {
-  id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  name        String   @unique
-  nickname    String   @unique
-  email       String
-  imgae       String?
-  created_at  DateTime @default(now())
-  updated_at  DateTime @default(now())
-  writtenNews News[]
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  name           String    @unique
+  nickname       String    @unique
+  email          String
+  imgae          String?
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @default(now())
+  writtenNews    News[]
+  writtenReviews Reviews[]
 }
