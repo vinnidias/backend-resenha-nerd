@@ -15,7 +15,7 @@ datasource db {
 
 model News {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  author        String
+  author        Author    @relation(fields: [authorId], references: [nickname])
   title         String
   subtitle      String
   category      String
@@ -26,6 +26,18 @@ model News {
   link          String?
   created_at    DateTime  @default(now())
   updated_at    DateTime? @default(now())
+  authorId      String
 
   @@map("news")
+}
+
+model Author {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String   @unique
+  nickname    String   @unique
+  email       String
+  imgae       String?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now())
+  writtenNews News[]
 }
