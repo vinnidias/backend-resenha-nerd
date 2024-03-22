@@ -14,9 +14,10 @@ class FindNewsByIdService {
       where: {
         id: id,
       },
+      include: { author: { select: { nickname: true, image: true } } },
     });
 
-    return findNews
+    return findNews;
   }
 }
 
