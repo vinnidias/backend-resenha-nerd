@@ -41,6 +41,8 @@ model Reviews {
   created_at DateTime  @default(now())
   updated_at DateTime? @default(now())
   authorId   String
+
+  @@map("reviews")
 }
 
 model Author {
@@ -53,4 +55,6 @@ model Author {
   updated_at     DateTime  @default(now())
   writtenNews    News[]
   writtenReviews Reviews[]
+
+  @@map("authors")
 }
