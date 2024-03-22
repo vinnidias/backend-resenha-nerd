@@ -15,7 +15,7 @@ datasource db {
 
 model News {
   id            String    @id @default(auto()) @map("_id") @db.ObjectId
-  author        Author    @relation(fields: [authorId], references: [nickname])
+  author        Author    @relation("WrittenNews", fields: [authorId], references: [nickname])
   title         String
   subtitle      String
   category      String
@@ -33,7 +33,7 @@ model News {
 
 model Reviews {
   id         String    @id @default(auto()) @map("_id") @db.ObjectId
-  author     Author    @relation(fields: [authorId], references: [nickname])
+  author     Author    @relation("WrittenReviews", fields: [authorId], references: [nickname])
   category   String
   title      String
   subtitle   String
@@ -53,8 +53,8 @@ model Author {
   image          String?
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now())
-  writtenNews    News[]
-  writtenReviews Reviews[]
+  writtenNews    News[]    @relation("WrittenNews")
+  writtenReviews Reviews[] @relation("WrittenReviews")
 
   @@map("authors")
 }
