@@ -1,6 +1,18 @@
 import { FastifyRequest, FastifyReply } from "fastify";
 import { CreateNewsService } from "../services/CreateNewsService";
 
+interface CreateNewsProps{
+  author: string;
+  title: string;
+  subtitle: string;
+  category: string;
+  content: string;
+  end_text?: string;
+  image?: string;
+  image_credits?: string;
+  link?: string;
+}
+
 class CreateNewsController {
   async handle(request: FastifyRequest, reply: FastifyReply) {
     const {
@@ -13,17 +25,7 @@ class CreateNewsController {
       image,
       image_credits,
       link,
-    } = request.body as {
-      author: string;
-      title: string;
-      subtitle: string;
-      category: string;
-      content: string;
-      end_text?: string;
-      image?: string;
-      image_credits?: string;
-      link?: string;
-    };
+    } = request.body as CreateNewsProps;
 
     const newsService = new CreateNewsService();
 
