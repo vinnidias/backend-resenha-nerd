@@ -28,8 +28,16 @@ class CreateNewsService {
       throw new Error("Preencha todos os campos para enviar a notícia!");
     }
 
+    const isValidAuthor = prismaClient.author.findUnique({where:{
+      nickname: author
+    }})
+
+    if(!isValidAuthor){
+      throw new Error("Autor inexistente");
+    }
+
     const news = prismaClient.news.create({data:{
-      author,
+      authorId: author,
       category,
       title,
       subtitle,
