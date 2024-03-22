@@ -48,7 +48,7 @@ model Author {
   name           String    @unique
   nickname       String    @unique
   email          String    @unique
-  imgae          String?
+  image          String?
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now())
   writtenNews    News[]
