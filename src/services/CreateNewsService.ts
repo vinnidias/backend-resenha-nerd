@@ -24,29 +24,35 @@ class CreateNewsService {
     image_credits,
     link,
   }: CreateNewsProps) {
+    const isValidAuthor = await prismaClient.author.findUnique({
+      where: {
+        nickname: author,
+      },
+    });
+
+    console.log("AUTOR: ", isValidAuthor); 
+
     if (!author || !title || !subtitle || !content || !category) {
       throw new Error("Preencha todos os campos para enviar a notícia!");
     }
 
-    const isValidAuthor = prismaClient.author.findUnique({where:{
-      nickname: author
-    }})
-
-    if(!isValidAuthor){
+    if (!isValidAuthor) {
       throw new Error("Autor inexistente");
     }
 
-    const news = prismaClient.news.create({data:{
-      authorId: author,
-      category,
-      title,
-      subtitle,
-      content,
-      end_text,
-      image,
-      image_credits,
-      link
-    }});
+    const news = prismaClient.news.create({
+      data: {
+        authorId: author,
+        category,
+        title,
+        subtitle,
+        content,
+        end_text,
+        image,
+        image_credits,
+        link,
+      },
+    });
 
     return news;
   }

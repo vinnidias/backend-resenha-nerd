@@ -9,7 +9,7 @@ class ListNewsService {
         },
       ],
       include: {
-        author: { select: { nickname: true, image: true, } },
+        author: { select: { nickname: true, image: true } },
       },
     });
 
