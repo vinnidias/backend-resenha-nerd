@@ -12,7 +12,7 @@ class CreateAuthorService {
     if (!name || !nickname || !email) {
       throw new Error("Preencha todos os campos para criar o autor!");
     }
-    const author = prismaClient.author.create({
+    const author = await prismaClient.author.create({
       data: {
         name,
         nickname,
