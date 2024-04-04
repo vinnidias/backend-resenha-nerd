@@ -30,8 +30,6 @@ class CreateNewsService {
       },
     });
 
-    console.log("AUTOR: ", isValidAuthor); 
-
     if (!author || !title || !subtitle || !content || !category) {
       throw new Error("Preencha todos os campos para enviar a notícia!");
     }
