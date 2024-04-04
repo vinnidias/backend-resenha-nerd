@@ -10,6 +10,7 @@ import { FindNewsByIdController } from "./controllers/FindNewsByIdController";
 import { CreateAuthorController } from "./controllers/CreateAuthorController";
 import { CreateReviewController } from "./controllers/CreateReviewController";
 import { ListReviewController } from "./controllers/ListReviewController";
+import { FindReviewByIdController } from "./controllers/FindReviewByIdController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -54,6 +55,13 @@ export async function routes(
     "/reviews",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new ListReviewController().handle(request, reply);
+    }
+  );
+
+  fastify.get(
+    "/reviewbyid",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new FindReviewByIdController().handle(request, reply);
     }
   );
 }
