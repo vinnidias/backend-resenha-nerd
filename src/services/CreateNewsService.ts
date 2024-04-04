@@ -40,7 +40,7 @@ class CreateNewsService {
       throw new Error("Autor inexistente");
     }
 
-    const news = prismaClient.news.create({
+    const news = await prismaClient.news.create({
       data: {
         authorId: author,
         category,
