@@ -14,7 +14,7 @@ class CreateAuthorController {
 
     const authorService = new CreateAuthorService();
 
-    const author = authorService.execute({ name, nickname, email, image });
+    const author = await authorService.execute({ name, nickname, email, image });
 
     reply.send(author);
   }
