@@ -14,7 +14,19 @@ class FindNewsByIdService {
       where: {
         id: id,
       },
-      include: { author: { select: { nickname: true, image: true } } },
+      include: {
+        author: {
+          select: {
+            nickname: true,
+            image: true,
+            github_link: true,
+            intagram_link: true,
+            reddit_link: true,
+            twitch_link: true,
+            twitter_link: true,
+          },
+        },
+      },
     });
 
     return findNews;

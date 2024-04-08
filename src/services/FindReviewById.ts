@@ -9,15 +9,15 @@ class FindReviewByIdService {
     const isValidId = await prismaClient.reviews.findUnique({
       where: {
         id: id,
-      }
-    })
+      },
+    });
 
     if (!id) {
       throw new Error("Id inválido ou inexistente");
     }
 
-    if(!isValidId) {
-      throw new Error("Resenha inexistente ou id inválido!")
+    if (!isValidId) {
+      throw new Error("Resenha inexistente ou id inválido!");
     }
 
     const findReview = await prismaClient.reviews.findFirst({
@@ -29,6 +29,11 @@ class FindReviewByIdService {
           select: {
             nickname: true,
             image: true,
+            github_link: true,
+            intagram_link: true,
+            reddit_link: true,
+            twitch_link: true,
+            twitter_link: true,
           },
         },
       },
