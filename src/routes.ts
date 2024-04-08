@@ -11,6 +11,7 @@ import { CreateAuthorController } from "./controllers/CreateAuthorController";
 import { CreateReviewController } from "./controllers/CreateReviewController";
 import { ListReviewController } from "./controllers/ListReviewController";
 import { FindReviewByIdController } from "./controllers/FindReviewByIdController";
+import { UpdateAthorController } from "./controllers/UpdateAthorController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -24,6 +25,10 @@ export async function routes(
 
   fastify.post("/author", (request: FastifyRequest, reply: FastifyReply) => {
     return new CreateAuthorController().handle(request, reply);
+  });
+
+  fastify.patch("/author", (request: FastifyRequest, reply: FastifyReply) => {
+    return new UpdateAthorController().handle(request, reply);
   });
 
   fastify.post(
