@@ -47,10 +47,16 @@ model Reviews {
 
 model Author {
   id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String    
+  name           String
   nickname       String    @unique
   email          String    @unique
   image          String?
+  intagram_link  String?
+  twitter_link   String?
+  youtube_link   String?
+  github_link    String?
+  reddit_link    String?
+  twitch_link    String?
   created_at     DateTime  @default(now())
   updated_at     DateTime  @default(now())
   writtenNews    News[]    @relation("WrittenNews")
