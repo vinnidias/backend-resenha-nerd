@@ -5,10 +5,27 @@ interface CreateAuthorProps {
   nickname: string;
   email: string;
   image?: string;
+  intagram_link?: string;
+  twitter_link?: string;
+  youtube_link?: string;
+  github_link?: string;
+  reddit_link?: string;
+  twitch_link?: string;
 }
 
 class CreateAuthorService {
-  async execute({ name, nickname, email, image }: CreateAuthorProps) {
+  async execute({
+    name,
+    nickname,
+    email,
+    image,
+    intagram_link,
+    twitter_link,
+    youtube_link,
+    github_link,
+    reddit_link,
+    twitch_link,
+  }: CreateAuthorProps) {
     if (!name || !nickname || !email) {
       throw new Error("Preencha todos os campos para criar o autor!");
     }
@@ -40,6 +57,12 @@ class CreateAuthorService {
         nickname,
         email,
         image,
+        intagram_link,
+        twitter_link,
+        youtube_link,
+        github_link,
+        reddit_link,
+        twitch_link,
       },
     });
 
