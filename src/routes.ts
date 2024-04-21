@@ -12,6 +12,7 @@ import { CreateReviewController } from "./controllers/CreateReviewController";
 import { ListReviewController } from "./controllers/ListReviewController";
 import { FindReviewByIdController } from "./controllers/FindReviewByIdController";
 import { UpdateAthorController } from "./controllers/UpdateAthorController";
+import { DeleteReviewController } from "./controllers/DeleteReviewController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -67,6 +68,13 @@ export async function routes(
     "/reviewbyid",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new FindReviewByIdController().handle(request, reply);
+    }
+  );
+
+  fastify.delete(
+    "/review",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new DeleteReviewController().handle(request, reply);
     }
   );
 }
