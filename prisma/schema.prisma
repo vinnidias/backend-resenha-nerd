@@ -64,3 +64,15 @@ model Author {
 
   @@map("authors")
 }
+
+model ContactMessage {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  email      String
+  subject    String
+  message    String
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  @@map("contactMessage")
+}
