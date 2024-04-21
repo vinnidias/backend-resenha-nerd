@@ -13,11 +13,11 @@ class FindReviewByIdService {
     });
 
     if (!id) {
-      throw new Error("Id inválido ou inexistente");
+      throw new Error("Id necessário para localização da resenha");
     }
 
     if (!isValidId) {
-      throw new Error("Resenha inexistente ou id inválido!");
+      throw new Error("Resenha inexistente!");
     }
 
     const findReview = await prismaClient.reviews.findFirst({
