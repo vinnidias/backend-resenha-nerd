@@ -13,6 +13,8 @@ import { ListReviewController } from "./controllers/ListReviewController";
 import { FindReviewByIdController } from "./controllers/FindReviewByIdController";
 import { UpdateAthorController } from "./controllers/UpdateAthorController";
 import { DeleteReviewController } from "./controllers/DeleteReviewController";
+import { CreateContactMessageController } from "./controllers/CreateContactMessageController";
+import { ListContactsController } from "./controllers/ListContactsController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -75,6 +77,20 @@ export async function routes(
     "/review",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new DeleteReviewController().handle(request, reply);
+    }
+  );
+
+  fastify.post(
+    "/contact",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new CreateContactMessageController().handle(request, reply);
+    }
+  );
+
+  fastify.get(
+    "/contacts",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new ListContactsController().handle(request, reply);
     }
   );
 }
