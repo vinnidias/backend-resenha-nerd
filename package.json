@@ -11,7 +11,6 @@
     "build": "tsup src",
     "start": "node dist/server.js"
   },
-  "type": "module",
   "author": "vinnidias",
   "license": "ISC",
   "devDependencies": {
