@@ -45,22 +45,68 @@ model Reviews {
   @@map("reviews")
 }
 
+model Quiz {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  author        Author    @relation("WrittenQuizzes", fields: [authorId], references: [nickname])
+  title         String
+  content       String
+  first_option  String
+  second_option String
+  third_option  String?
+  fourth_option String?
+  fifth_option  String?
+  selectedBy    Reader    @relation("SelectedOption", fields: [readerId], references: [nickname])
+  readerId      String
+  authorId      String
+  created_at    DateTime  @default(now())
+  updated_at    DateTime? @default(now())
+
+  @@map("quizzes")
+}
+
+model Discussion {
+  id         String     @id @default(auto()) @map("_id") @db.ObjectId
+  author     Author     @relation("WrittenDiscussions", fields: [authorId], references: [nickname])
+  category   String
+  title      String
+  content    String
+  authorId   String
+  comments   Comments[] @relation("CommentsPosted")
+  created_at DateTime   @default(now())
+  updated_at DateTime?  @default(now())
+
+  @@map("discussions")
+}
+
+model Comments {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  content       String
+  author        Reader     @relation("DiscussionComments", fields: [readerId], references: [nickname])
+  commentPosted Discussion @relation("CommentsPosted", fields: [discussionId], references: [id])
+  discussionId  String     @db.ObjectId
+  readerId      String
+  created_at    DateTime   @default(now())
+  updated_at    DateTime?  @default(now())
+}
+
 model Author {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  nickname       String    @unique
-  email          String    @unique
-  image          String?
-  intagram_link  String?
-  twitter_link   String?
-  youtube_link   String?
-  github_link    String?
-  reddit_link    String?
-  twitch_link    String?
-  created_at     DateTime  @default(now())
-  updated_at     DateTime  @default(now())
-  writtenNews    News[]    @relation("WrittenNews")
-  writtenReviews Reviews[] @relation("WrittenReviews")
+  id                String       @id @default(auto()) @map("_id") @db.ObjectId
+  name              String
+  nickname          String       @unique
+  email             String       @unique
+  image             String?
+  intagram_link     String?
+  twitter_link      String?
+  youtube_link      String?
+  github_link       String?
+  reddit_link       String?
+  twitch_link       String?
+  created_at        DateTime     @default(now())
+  updated_at        DateTime     @default(now())
+  writtenNews       News[]       @relation("WrittenNews")
+  writtenReviews    Reviews[]    @relation("WrittenReviews")
+  writtenQuiz       Quiz[]       @relation("WrittenQuizzes")
+  writtenDiscussion Discussion[] @relation("WrittenDiscussions")
 
   @@map("authors")
 }
@@ -75,4 +121,17 @@ model ContactMessage {
   update_at  DateTime @default(now())
 
   @@map("contactMessage")
+}
+
+model Reader {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  nickname   String   @unique
+  email      String
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  selectedOption    Quiz[]     @relation("SelectedOption")
+  discussionComment Comments[] @relation("DiscussionComments")
+
+  @@map("readers")
 }
