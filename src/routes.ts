@@ -15,6 +15,10 @@ import { UpdateAthorController } from "./controllers/UpdateAthorController";
 import { DeleteReviewController } from "./controllers/DeleteReviewController";
 import { CreateContactMessageController } from "./controllers/CreateContactMessageController";
 import { ListContactsController } from "./controllers/ListContactsController";
+import { CreateDiscussionController } from "./controllers/CreateDiscussionController";
+import { ListDiscussionController } from "./controllers/ListDiscussionController";
+import { CreateDiscussionCommentController } from "./controllers/CreateDiscussionCommentController";
+import { CreateReaderController } from "./controllers/CreateReaderController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -30,8 +34,12 @@ export async function routes(
     return new CreateAuthorController().handle(request, reply);
   });
 
-  fastify.patch("/author", (request: FastifyRequest, reply: FastifyReply) => {
+  fastify.patch("/reader", (request: FastifyRequest, reply: FastifyReply) => {
     return new UpdateAthorController().handle(request, reply);
+  });
+
+  fastify.post("/reader", (request: FastifyRequest, reply: FastifyReply) => {
+    return new CreateReaderController().handle(request, reply);
   });
 
   fastify.post(
@@ -91,6 +99,27 @@ export async function routes(
     "/contacts",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new ListContactsController().handle(request, reply);
+    }
+  );
+
+  fastify.post(
+    "/discussion",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new CreateDiscussionController().handle(request, reply);
+    }
+  );
+
+  fastify.get(
+    "/discussions",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new ListDiscussionController().handle(request, reply);
+    }
+  );
+
+  fastify.post(
+    "/discussioncomment",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new CreateDiscussionCommentController().handle(request, reply);
     }
   );
 }
