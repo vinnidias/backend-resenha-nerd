@@ -19,6 +19,7 @@ import { CreateDiscussionController } from "./controllers/CreateDiscussionContro
 import { ListDiscussionController } from "./controllers/ListDiscussionController";
 import { CreateDiscussionCommentController } from "./controllers/CreateDiscussionCommentController";
 import { CreateReaderController } from "./controllers/CreateReaderController";
+import { FindDiscussionByIdController } from "./controllers/FindDiscussionByIdController";
 
 export async function routes(
   fastify: FastifyInstance,
@@ -113,6 +114,13 @@ export async function routes(
     "/discussions",
     async (request: FastifyRequest, reply: FastifyReply) => {
       return new ListDiscussionController().handle(request, reply);
+    }
+  );
+
+  fastify.get(
+    "/discussion",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      return new FindDiscussionByIdController().handle(request, reply);
     }
   );
 
